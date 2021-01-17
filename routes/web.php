@@ -10,17 +10,20 @@ Route::view('/', 'index');
 Route::view('about', 'about');
 Route::view('schedule', 'schedule');
 Route::view('galery', 'galery');
-Route::get('galery-detail', function () {
-    return view('galery-detail');
-});
-Route::get('blog', 'BlogController@index');
-Route::get('blog/create', 'BlogController@create');
-Route::post('blog/store', 'BlogController@store');
-Route::get('blog/{blog:slug}', 'BlogController@show');
-Route::get('blog/{blog:slug}/edit', 'BlogController@edit');
-Route::patch('blog/{blog:slug}/edit', 'BlogController@update');
-Route::delete('blog/{blog:slug}/delete', 'BlogController@destroy');
+Route::view('galery-detail', 'galery-detail`');
 
+Route::get('blog', 'BlogController@index')->name('blog.index');
+
+Route::prefix('blog')->middleware('auth')->group(function () {
+    Route::get('create', 'BlogController@create')->name('blog.create');
+    Route::post('store', 'BlogController@store')->name('blog.store');
+    Route::get('{blog:slug}/edit', 'BlogController@edit')->name('blog.edit');
+    Route::patch('{blog:slug}/edit', 'BlogController@update')->name('blog.update');
+    Route::delete('{blog:slug}/delete', 'BlogController@destroy')->name('blog.destroy');
+});
+
+Route::get('blog/{blog:slug}', 'BlogController@show')->name('blog.show');
+Route::get('categories/{category:slug}', 'CategoryController@show')->name('blog.show');
 
 
 

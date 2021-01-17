@@ -8,7 +8,11 @@
     <div class="container">
 
       <div class="d-flex justify-content-between align-items-center">
+        @isset($category)
+        <h2>Category : {{ $category->name }}</h2>
+        @else
         <h2>Blog</h2>
+        @endisset
         <ol>
           {{-- searching engine --}}
           <li><a href="/">Home</a></li>
@@ -26,7 +30,9 @@
   <section id="blog" class="blog">
     <div class="container">
       <div class="d-flex justify-content-sm-end mb-4">
-        <a href="/blog/create" class="btn btn-sm btn-danger">New Blog</a>
+        @auth
+        <a href="{{route('blog.create')}}" class="btn btn-sm btn-danger">New Blog</a>
+        @endauth
       </div>
       @include('layout.alert')
       @if($blogs->count())
@@ -59,7 +65,9 @@
                 {{Str::limit($blog->body, 70)}}
               </p>
               <div class="read-more">
+                @auth
                 <a href="/blog/{{$blog->slug}}/edit">Edit</a>
+                @endauth
                 <a href="/blog/{{$blog->slug}}">Read More</a>
               </div>
             </div>

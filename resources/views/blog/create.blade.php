@@ -8,7 +8,7 @@
                 <div class="card-header">New Post</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/blog/store" novalidate>
+                    <form method="POST" action="{{route('blog.store')}}" novalidate>
                         @csrf
                         @include('blog.form', ['submit' => 'Create'])
                     </form>

@@ -43,14 +43,14 @@
                 <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a
                     href="/blog/{{$blog->slug}}"><time
                       datetime="2020-01-01">{{$blog->created_at->diffForHumans()}}</time></a></li>
-                <li class="d-flex align-items-center"><a href="/blog/{{$blog->slug}}">{{$blog->category->name}} &middot;
-                  </a></li>
+                <li class="d-flex align-items-center"><i class="icofont-search-map"></i> <a
+                    href="/categories/{{$blog->category->slug}}">{{$blog->category->name}}</a></li>
               </ul>
             </div>
 
             <div class="entry-content">
               <p>{{ $blog->body }}</p>
-
+              @auth
               <!-- Button trigger modal -->
               <div class="d-flex justify-content-end mb-2">
                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
@@ -86,6 +86,7 @@
                   </div>
                 </div>
               </div>
+              @endauth
 
             </div>
 

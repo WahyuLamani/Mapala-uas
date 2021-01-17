@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use App\Category;
 use Illuminate\Http\Request;
 
 
@@ -25,7 +26,10 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view('blog.create', ['blog' => new Blog()]);
+        return view('blog.create', [
+            'blog'          => new Blog(),
+            'categories'    => Category::get(),
+        ]);
     }
 
 
@@ -37,6 +41,7 @@ class BlogController extends Controller
         // input data
         Blog::create([
             'title' => ucwords($request->title),
+            'category_id' => $request->category,
             'slug' => \Str::slug($request->title),
             'body' => $request->body,
         ]);
@@ -52,7 +57,10 @@ class BlogController extends Controller
 
     public function edit(Blog $blog)
     {
-        return view('blog.edit', compact('blog'));
+        return view('blog.edit', [
+            'blog' => $blog,
+            'categories'    => Category::get(),
+        ]);
     }
 
     public function update(Request $request, Blog $blog)
@@ -61,6 +69,7 @@ class BlogController extends Controller
 
         $blog->update([
             'title' => ucwords($request->title),
+            'category_id' => $request->category,
             'body' => $request->body,
         ]);
 
@@ -73,6 +82,7 @@ class BlogController extends Controller
     {
         return request()->validate([
             'title' => 'required|max:40',
+            'category' => 'required',
             'body'  => 'required',
         ]);
     }
