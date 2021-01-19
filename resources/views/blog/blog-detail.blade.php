@@ -38,8 +38,8 @@
 
             <div class="entry-meta">
               <ul>
-                <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="/blog/{{$blog->slug}}">John
-                    Doe</a></li>
+                <li class="d-flex align-items-center"><i class="icofont-user"></i> <a
+                    href="/blog/{{$blog->slug}}">{{$blog->user->name}}</a></li>
                 <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a
                     href="/blog/{{$blog->slug}}"><time
                       datetime="2020-01-01">{{$blog->created_at->diffForHumans()}}</time></a></li>
@@ -51,6 +51,7 @@
             <div class="entry-content">
               <p>{{ $blog->body }}</p>
               @auth
+              @if(auth()->user()->id == $blog->user_id)
               <!-- Button trigger modal -->
               <div class="d-flex justify-content-end mb-2">
                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
@@ -86,6 +87,7 @@
                   </div>
                 </div>
               </div>
+              @endif
               @endauth
 
             </div>
@@ -117,7 +119,7 @@
 
           <div class="blog-author clearfix">
             <img src="assets/img/blog-author.jpg" class="rounded-circle float-left" alt="">
-            <h4>Jane Smith</h4>
+            <h4>{{$blog->user->name}}</h4>
             <div class="social-links">
               <a href="https://twitters.com/#"><i class="icofont-twitter"></i></a>
               <a href="https://facebook.com/#"><i class="icofont-facebook"></i></a>

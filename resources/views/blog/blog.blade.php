@@ -46,13 +46,13 @@
             </div>
 
             <h2 class="entry-title">
-              <a href="/blog/{{$blog->slug}}">{{$blog->title}}</a>
+              <a href="/blog/{{$blog->slug}}">{{Str::limit($blog->title, 30)}}</a>
             </h2>
 
             <div class="entry-meta">
               <ul>
-                <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="/blog/{{$blog->slug}}">John
-                    Doe</a>
+                <li class="d-flex align-items-center"><i class="icofont-user"></i> <a
+                    href="/blog/{{$blog->slug}}">{{$blog->user->name}}</a>
                 </li>
                 <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a
                     href="/blog/{{$blog->slug}}"><time
@@ -66,7 +66,9 @@
               </p>
               <div class="read-more">
                 @auth
+                @if(auth()->user()->id == $blog->user_id)
                 <a href="/blog/{{$blog->slug}}/edit">Edit</a>
+                @endif
                 @endauth
                 <a href="/blog/{{$blog->slug}}">Read More</a>
               </div>

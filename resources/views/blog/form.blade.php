@@ -14,7 +14,7 @@
 
 <div class="form-group row">
     <label for="category" class="col-md-4 col-form-label text-md-right">Category</label>
-    <div class="col-md-6">
+    <div class="col-md-3">
         <select id="category" name="category" class="form-control @error('category') is-invalid @enderror">
             <option selected disabled>ChooseOne</option>
             @foreach ($categories as $category)
@@ -28,6 +28,9 @@
             <strong>{{ $message }}</strong>
         </span>
         @enderror
+    </div>
+    <div class="col-md-3">
+        <input type="text" name="new_category" id="new_category" class="form-control" placeholder="New Categories">
     </div>
 </div>
 
