@@ -7,7 +7,7 @@ Route::view('/', 'index');
 
 
 
-Route::view('about', 'about');
+Route::get('about', 'UserController@index');
 Route::view('schedule', 'schedule');
 Route::view('galery', 'galery');
 Route::view('galery-detail', 'galery-detail`');

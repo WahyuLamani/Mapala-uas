@@ -13,7 +13,9 @@
             <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
                 <div class="carousel-container">
                     <div class="container">
-                        <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Sailor</span></h2>
+                        <h2 class="animate__animated animate__fadeInDown"><span>Mapala Katulistiwa
+                                Elektro</span>
+                        </h2>
                         <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid.
                             Sequi ea
                             ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea

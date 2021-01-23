@@ -8,7 +8,7 @@
                 <div class="card-header">Update Post</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/blog/{{ $blog->slug }}/edit" novalidate>
+                    <form method="POST" action="/blog/{{ $blog->slug }}/edit" enctype="multipart/form-data" novalidate>
                         @method('patch')
                         @csrf
                         @include('blog.form')

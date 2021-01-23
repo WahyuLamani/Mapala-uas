@@ -42,7 +42,7 @@
           <article class="entry">
 
             <div class="entry-img">
-              <img src="assets/img/blog-1.jpg" alt="" class="img-fluid">
+              <img style="height: 250px;" src="{{asset("/storage/" . $blog->thumbnail)}}" class="img-fluid">
             </div>
 
             <h2 class="entry-title">
