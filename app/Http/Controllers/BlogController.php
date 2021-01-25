@@ -116,24 +116,36 @@ class BlogController extends Controller
             $thumbnail = $blog->thumbnail;
         }
 
-
         $this->validateRequest();
+
 
         // use Auth for update
         if (auth()->user()->id == $blog->user_id) {
+            if (!isset($request->new_category)) {
+                $categoryAttr = $request->category;
+
+                session()->flash('success', ucwords('Your blog is successfully Updated'));
+            }
+            if (isset($request->new_category)) {
+                Category::create([
+                    'name' => ucwords($request->new_category),
+                    'slug' => \Str::slug($request->new_category),
+                ]);
+                $categoryAttr = Category::where('name', $request->new_category)->first()->id;
+
+
+                session()->flash('success', ucwords('Your blog is successfully Updated'));
+            }
             $blog->update([
                 'title' => ucwords($request->title),
-                'category_id' => $request->category,
+                'category_id' => $categoryAttr,
                 'thumbnail' => $thumbnail,
                 'body' => $request->body,
             ]);
-
-            session()->flash('success', ucwords('Your blog is successfully Updated'));
-            return redirect()->to('blog');
         } else {
             session()->flash('error', ucwords('Your blog is unsuccessfully Updated'));
-            return redirect()->to('blog');
         }
+        return redirect()->to('blog');
     }
 
     public function validateRequest()

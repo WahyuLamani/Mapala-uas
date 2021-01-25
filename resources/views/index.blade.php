@@ -10,7 +10,7 @@
         <div class="carousel-inner" role="listbox">
 
             <!-- Slide 1 -->
-            <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
+            <div class="carousel-item active" style="background-image: url(storage/images/mapala-venda.jpg)">
                 <div class="carousel-container">
                     <div class="container">
                         <h2 class="animate__animated animate__fadeInDown"><span>Mapala Katulistiwa

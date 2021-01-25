@@ -10,10 +10,10 @@
             <ul>
                 <li class="{{ request()->is('/') ? 'active' : '' }}"><a href="/">Home</a></li>
                 <li class="{{ request()->is('about') ? 'active' : '' }}"><a href="/about">About</a></li>
-                <li class="{{ request()->is('schedule') ? 'active' : '' }}"><a href="/schedule">Schedule</a></li>
-                <li class="{{ request()->is('galery') ? 'active' : '' }}"><a href="/galery">Galery</a></li>
+                {{-- <li class="{{ request()->is('schedule') ? 'active' : '' }}"><a href="/schedule">Schedule</a></li>
+                <li class="{{ request()->is('galery') ? 'active' : '' }}"><a href="/galery">Galery</a></li> --}}
                 <li class="{{ request()->is('blog') ? 'active' : '' }}"><a href="/blog">Blog</a></li>
-                <li class="{{ request()->is('contact') ? 'active' : '' }}"><a href="/contact">Contact</a></li>
+                {{-- <li class="{{ request()->is('contact') ? 'active' : '' }}"><a href="/contact">Contact</a></li> --}}
                 @guest
                 <li class="{{ request()->is('login') ? 'active' : '' }}"><a href="/login">Login</a></li>
                 @endguest
