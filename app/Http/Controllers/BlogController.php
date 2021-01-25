@@ -55,33 +55,24 @@ class BlogController extends Controller
                 'name' => ucwords($request->new_category),
                 'slug' => \Str::slug($request->new_category),
             ]);
-            $new_kategory = Category::where('name', $request->new_category)->first();
-
-            // input data with authentications
-            auth()->user()->blogs()->create([
-                'title' => ucwords($request->title),
-                'category_id' => $new_kategory->id,
-                'thumbnail' => $thumbnailUrl,
-                'slug' => \Str::slug($request->title),
-                'body' => $request->body,
-            ]);
-
+            $categoryAttr = Category::where('name', $request->new_category)->first()->id;
 
             session()->flash('success', ucwords('Your blog is successfully created'));
         } elseif (!isset($request->new_category) && isset($request->category)) {
-            // input data with authentications
-            auth()->user()->blogs()->create([
-                'title' => ucwords($request->title),
-                'category_id' => $request->category,
-                'thumbnail' => $thumbnailUrl,
-                'slug' => \Str::slug($request->title),
-                'body' => $request->body,
-            ]);
+            $categoryAttr = $request->category;
+
             session()->flash('success', ucwords('Your blog is successfully created'));
         } else {
             session()->flash('error', ucwords('Your blog is unsuccessfully created'));
         }
-
+        // input data with authentications
+        auth()->user()->blogs()->create([
+            'title' => ucwords($request->title),
+            'category_id' => $categoryAttr,
+            'thumbnail' => $thumbnailUrl,
+            'slug' => \Str::slug($request->title),
+            'body' => $request->body,
+        ]);
         // input data with authentications
         // auth()->user()->blogs()->create([
         //     'title' => ucwords($request->title),
