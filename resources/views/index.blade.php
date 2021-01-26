@@ -10,10 +10,10 @@
         <div class="carousel-inner" role="listbox">
 
             <!-- Slide 1 -->
-            <div class="carousel-item active" style="background-image: url(storage/images/mapala-venda.jpg)">
+            <div class="carousel-item active" style="background-image: url(storage/images/thumbnail2.jpeg)">
                 <div class="carousel-container">
                     <div class="container">
-                        <h2 class="animate__animated animate__fadeInDown"><span>Mapala Katulistiwa
+                        <h2 class="animate__animated animate__fadeInDown"><span>MPA Katulistiwa Adventure
                                 Elektro</span>
                         </h2>
                         <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid.

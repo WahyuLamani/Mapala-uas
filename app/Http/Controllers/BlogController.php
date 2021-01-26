@@ -35,13 +35,18 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
-        $thumbnail = $request->file('thumbnail');
-        // $thumbnailUrl = $thumbnail->storeAs("images/blogs", "{$slug}.{$thumbnail->extension()}");
-        $thumbnailUrl = $thumbnail->store("images/blogs");
-
-
         // validasi
         $this->validateRequest();
+
+        if (!$request->file('thumbnail')) {
+            $thumbnailUrl = null;
+        } else {
+            $thumbnail = $request->file('thumbnail');
+            // $thumbnailUrl = $thumbnail->storeAs("images/blogs", "{$slug}.{$thumbnail->extension()}");
+            $thumbnailUrl = $thumbnail->store("images/blogs");
+        }
+
+
 
         // input data with out autentications
         // Blog::create([
@@ -64,6 +69,8 @@ class BlogController extends Controller
             session()->flash('success', ucwords('Your blog is successfully created'));
         } else {
             session()->flash('error', ucwords('Your blog is unsuccessfully created'));
+            return redirect()->to('blog');
+            die();
         }
         // input data with authentications
         auth()->user()->blogs()->create([
@@ -100,6 +107,9 @@ class BlogController extends Controller
 
     public function update(Request $request, Blog $blog)
     {
+        $this->validateRequest();
+
+
         if ($request->file('thumbnail')) {
             \Storage::delete($blog->thumbnail);
             $thumbnail = $request->file('thumbnail')->store("images/blogs");
@@ -107,7 +117,6 @@ class BlogController extends Controller
             $thumbnail = $blog->thumbnail;
         }
 
-        $this->validateRequest();
 
 
         // use Auth for update

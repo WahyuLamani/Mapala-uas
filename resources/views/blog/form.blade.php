@@ -2,10 +2,12 @@
     <label for="thumbnail" class="col-md-4 col-form-label text-md-right">images</label>
     <div class="col-md-6">
         <div class="custom-file">
-            <input type="file" name="thumbnail" class="custom-file-input" id="validatedCustomFile" required>
-            <label class="custom-file-label" for="validatedCustomFile">Choose Images...</label>
+            <input type="file" name="thumbnail" class="custom-file-input @error('thumbnail') is-invalid @enderror"
+                id="validatedCustomFile" required>
+            <label class="custom-file-label" for="validatedCustomFile">Choose
+                Images...</label>
 
-            @error('title')
+            @error('thumbnail')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
